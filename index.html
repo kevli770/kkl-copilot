@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ערכת משתתף · Copilot לחטיבת הביקורת</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#F4F1EA;--ink2:#FFFFFF;--ink3:#EDE8DF;--line:#DCD4C5;--paper:#1C2230;--soft:#3A4150;--mute:#666D7C;--dim:#9298A4;
+  --p1:#1E9A5E;--p2:#2F6BC2;--p3:#C07A12;--p4:#D2553A;--serif:'Frank Ruhl Libre',serif;--sans:'IBM Plex Sans Hebrew',sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--ink);color:var(--paper);font:400 17px/1.65 var(--sans)}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 80px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--ink) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .in{max-width:920px;margin:0 auto;padding:10px 20px;display:flex;gap:8px;overflow-x:auto;white-space:nowrap}
+nav a{font:600 13px var(--mono);text-decoration:none;color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:5px 12px;background:var(--ink2)}
+nav a:hover{color:var(--paper);border-color:var(--mute)}
+header{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+.kick{font:600 13px var(--mono);letter-spacing:.14em;color:var(--p2);display:flex;gap:12px;align-items:center}
+.kick::before{content:"";width:28px;height:2px;background:var(--p2)}
+h1{font:900 clamp(36px,6vw,58px)/1.05 var(--serif);margin:12px 0}
+h1 em{font-style:normal;color:var(--p2)}
+.lead{color:var(--mute);font-size:19px;max-width:640px}
+h2{font:900 30px var(--serif);margin:48px 0 6px}
+.part{color:var(--mute);margin-bottom:6px}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:0 1px 2px rgba(60,45,20,.06)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.rule{border-color:var(--p3)}.rule b{color:var(--p3)}
+.files a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:12px 14px;border-radius:12px;background:var(--ink3);margin-top:10px}
+.files a:hover{outline:1px solid var(--p2)}
+.x{font:700 11px var(--mono);background:#1D6F42;color:#fff;border-radius:4px;padding:3px 6px}
+.files small{color:var(--mute);display:block;font-size:14px}
+.ex{margin-top:22px;border-right:5px solid var(--c);scroll-margin-top:70px}
+.ex .h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ex .n{font:900 44px/1 var(--serif);color:var(--c)}
+.ex h3{font-size:24px}
+.ex .meta{font:600 13px var(--mono);color:var(--mute);margin-right:auto}
+.ex .goal{color:var(--soft);margin:8px 0 12px}
+.lab{font:600 12px var(--mono);letter-spacing:.12em;color:var(--dim);margin:14px 0 6px}
+ol.steps{padding-right:22px}ol.steps li{margin-bottom:4px}ol.steps li::marker{color:var(--c);font-family:var(--mono)}
+.pr{position:relative;background:var(--ink3);border:1px dashed var(--line);border-radius:12px;padding:12px 16px 12px 96px;margin-top:8px;color:var(--soft)}
+.pr button{position:absolute;left:10px;top:10px;background:var(--paper);color:var(--ink2);border:0;border-radius:8px;padding:6px 12px;font:700 14px var(--sans);cursor:pointer}
+.chk{margin-top:12px;padding:12px 16px;border-radius:12px;background:color-mix(in srgb,var(--p1) 10%,transparent);color:var(--soft)}
+.chk b{color:var(--p1)}
+.tip{margin-top:10px;font-size:15px;color:var(--mute)}
+.agent{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px}
+.agent b{font-size:18px}.agent small{color:var(--mute);display:block}
+.method{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:700px){.method{grid-template-columns:1fr 1fr}}
+.method div{border-top:3px solid var(--c);padding-top:8px}.method b{display:block;font-size:19px}.method span{font-size:14px;color:var(--mute)}
+footer{margin-top:60px;color:var(--dim);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+<nav><div class="in"><a href="#start">לפני שמתחילים</a><a href="#e1">1</a><a href="#e2">2</a><a href="#e3">3</a><a href="#method">השיטה</a><a href="#e4">4</a><a href="#e5">5</a><a href="#e6">6</a><a href="#e7">7</a><a href="#e8">8</a><a href="#e9">9</a><a href="#e10">10</a><a href="#lib">פרומפטים</a><a href="#bonus">בונוס</a></div></nav>
+<div class="wrap">
+<header>
+  <div class="kick">ערכת משתתף</div>
+  <h1>Copilot <em>לעבודת הביקורת</em></h1>
+  <p class="lead">עשרה תרגילים, שמונה סוכנים מוכנים, קבצי תרגול ופרומפטים להעתקה. כשהמנחה אומר ״תרגיל 5״, לחצו על 5 בסרגל למעלה.</p>
+</header>
+
+<h2 id="start">לפני שמתחילים</h2>
+<div class="grid2" style="margin-top:14px">
+  <div class="card"><b>איפה עובדים</b><p style="color:var(--soft)">Microsoft 365 Copilot Chat עם החשבון הארגוני: <span style="direction:ltr;display:inline-block">m365.cloud.microsoft</span>, או אפליקציית Copilot. ודאו שמופיע הסימון ״מוגן״.</p></div>
+  <div class="card rule"><b>כלל הזהב</b><p style="color:var(--soft)">מידע ארגוני נשאר בתוך Copilot. לא מדביקים אותו ב-ChatGPT, Gemini או Claude. פרטים מזהים מחליפים ב״מבוקר א׳״ לפני שמעלים.</p></div>
+</div>
+<div class="card files" style="margin-top:14px"><b>קבצי התרגול</b>
+  <a href="קבצים/תרגול_מכירות_ביקורת.xlsx" download><span class="x">XLSX</span><span>תרגול_מכירות_ביקורת.xlsx<small>45 עסקאות, מחירון, אנשי מכירות, וגיליון ״מדיניות״. לתרגילים 7-10</small></span></a>
+  <a href="קבצים/חשבונית_1_טכנו_פלוס.jpg" download><span class="x" style="background:#7A5A2E">JPG</span><span>חשבונית_1_טכנו_פלוס.jpg<small>לתרגיל 6</small></span></a>
+  <a href="קבצים/חשבונית_2_אקססורייז.jpg" download><span class="x" style="background:#7A5A2E">JPG</span><span>חשבונית_2_אקססורייז.jpg<small>לתרגיל 6</small></span></a>
+  <a href="קבצים/חשבונית_3_משרד_פלוס.jpg" download><span class="x" style="background:#7A5A2E">JPG</span><span>חשבונית_3_משרד_פלוס.jpg<small>לתרגיל 6</small></span></a>
+  <a href="קבצים/תרגול_מכירות.xlsx" download><span class="x">XLSX</span><span>תרגול_מכירות.xlsx<small>הקובץ המקורי, בלי חריגות. לתרגול חופשי</small></span></a>
+</div>
+
+<h2>חלק 1 · Copilot שמכיר אתכם</h2>
+
+<div class="card ex" id="e1" style="--c:var(--p3)">
+  <div class="h"><span class="n">1</span><h3>תנו ל-Copilot לראיין אתכם</h3><span class="meta">10 דק׳</span></div>
+  <p class="goal">לספר ל-Copilot פעם אחת מי אתם, כדי שכל תשובה מכאן תהיה מותאמת.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו Copilot עם החשבון הארגוני, ובדקו שמופיע ״מוגן״.</li><li>הדביקו את הפרומפט וענו על השאלות, אחת אחת.</li><li>העתיקו את הפסקה שקיבלתם להגדרות ← התאמה אישית (או זיכרון).</li><li>פתחו שיחה חדשה ושאלו: ״מה אתה יודע עליי?״</li></ol>
+  <div class="lab">פרומפט</div>
+  <div class="pr"><button>העתקה</button><span>ראיין אותי כדי להכיר אותי בעבודה. שאל שאלה אחת בכל פעם, עד 8 שאלות: תפקיד, סוגי ביקורות, מי קורא את התוצרים שלי, משימות שחוזרות, מונחים שלנו, ואיך אני אוהב/ת תשובות. בסוף כתוב לי פסקה של 5 שורות להדבקה בהגדרות ההתאמה האישית.</span></div>
+  <div class="lab">או לכתוב לבד</div>
+  <div class="pr"><button>העתקה</button><span>אני מבקר/ת פנים בחטיבת הביקורת. אני עובד/ת על [סוגי ביקורות]. התוצרים שלי נקראים על ידי [מי]. אני מעדיף/ה תשובות קצרות, בעברית, עם טבלה כשיש השוואה, ובסוף ״מה כדאי לבדוק״.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> שאלו שאלה כללית על סיכונים בתהליך. התשובה הגיעה בפורמט שביקשתם?</div>
+  <p class="tip">לא מוצאים את ההגדרה? הדביקו את הפסקה בתחילת כל שיחה. לא כותבים בהגדרות מידע רגיש.</p>
+</div>
+
+<div class="card ex" id="e2" style="--c:var(--p3)">
+  <div class="h"><span class="n">2</span><h3>מפת הזדמנויות</h3><span class="meta">8 דק׳</span></div>
+  <p class="goal">לגלות איפה Copilot יחסוך לכם זמן בעבודה שלכם, ולצאת עם רשימה אישית.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>הדביקו את הפרומפט.</li><li>סמנו את שתי המשימות שהכי שוות לכם.</li><li>הריצו עכשיו את הפרומפט לדוגמה של אחת מהן.</li></ol>
+  <div class="lab">פרומפט</div>
+  <div class="pr"><button>העתקה</button><span>על סמך מה שאתה יודע עליי, הצע 10 משימות מהעבודה שלי שבהן תוכל לחסוך לי זמן. החזר טבלה: המשימה, איך תעזור, כמה זמן בערך ייחסך בשבוע, ופרומפט לדוגמה שאוכל להריץ עכשיו.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> המשימות בטבלה הן באמת שלכם, או כלליות? אם כלליות, חזרו לתרגיל 1 והוסיפו פרטים.</div>
+</div>
+
+<h2>חלק 2 · מדברים נכון עם Copilot</h2>
+
+<div class="card ex" id="e3" style="--c:var(--p4)">
+  <div class="h"><span class="n">3</span><h3>בורר המודלים: אותה שאלה, שני מצבים</h3><span class="meta">7 דק׳</span></div>
+  <p class="goal">לראות מתי כדאי לבקש מ-Copilot לחשוב לעומק, ומתי תשובה מהירה מספיקה.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו את בורר המודלים בראש החלון.</li><li>הריצו את השאלה בתשובה מהירה.</li><li>פתחו שיחה חדשה, עברו לחשיבה מעמיקה, והריצו שוב.</li><li>השוו את שתי התשובות.</li></ol>
+  <div class="lab">פרומפט</div>
+  <div class="pr"><button>העתקה</button><span>יש לי זמן לבדוק רק 3 מתוך 6 תהליכים השנה: רכש, מכירות, שכר, מלאי, תקציב, ומערכות מידע. איך תדרג אותם לפי סיכון? נמק כל בחירה, ואמור מה היית צריך לדעת כדי להחליט טוב יותר.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> מה המצב המעמיק שקל, שהמהיר דילג עליו? הכלל: משימה קצרה = מהיר. תכנון, ניתוח והחלטה = חשיבה מעמיקה.</div>
+</div>
+
+<div class="card" id="method" style="margin-top:22px">
+  <b style="font-size:20px">השיטה: ארבעה מרכיבים</b>
+  <div class="method" style="margin-top:12px">
+    <div style="--c:var(--p1)"><b>מטרה</b><span>מה רוצים שיקרה?</span></div>
+    <div style="--c:var(--p2)"><b>הקשר</b><span>מי אני, איזה תהליך, מה ידוע</span></div>
+    <div style="--c:var(--p3)"><b>תוצר</b><span>מה בדיוק לקבל, ובאיזה פורמט</span></div>
+    <div style="--c:var(--p4)"><b>מגבלות</b><span>אורך, טון, זמן ודגשים</span></div>
+  </div>
+  <b style="font-size:20px;display:block;margin-top:18px">ארבע טכניקות</b>
+  <div class="method" style="margin-top:12px">
+    <div style="--c:var(--p4)"><b>הצבת מומחה</b><span>״עכשיו תהיה [מי]. בקר / עזור לי להתכונן.״</span></div>
+    <div style="--c:var(--p2)"><b>מה חסר לך?</b><span>״לפני שאתה עונה: איזה מידע חסר לך?״</span></div>
+    <div style="--c:var(--p1)"><b>הפוך תפקידים</b><span>״ראיין אותי. שאלה אחת בכל פעם.״</span></div>
+    <div style="--c:var(--p3)"><b>כמו לילד בן 12</b><span>״הסבר כאילו אני בן 12, ואז למנהל.״</span></div>
+  </div>
+</div>
+
+<div class="card ex" id="e4" style="--c:var(--p4)">
+  <div class="h"><span class="n">4</span><h3>משימה שלכם, עם שתי טכניקות</h3><span class="meta">12 דק׳</span></div>
+  <p class="goal">לכתוב בקשה טובה למשימה אמיתית, לתת ל-Copilot לשאול מה חסר, ולבקש ממומחה לבקר את התוצר.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>בחרו משימה מטבלת ההזדמנויות (תרגיל 2), או משהו מהשבוע. בלי פרטים מזהים.</li><li>מלאו את התבנית. השורה האחרונה כבר מבקשת מ-Copilot לשאול מה חסר לו. ענו על השאלות.</li><li>על התוצר שקיבלתם: הציבו מומחה שיבקר אותו.</li></ol>
+  <div class="lab">תבנית ארבעת המרכיבים</div>
+  <div class="pr"><button>העתקה</button><span style="white-space:pre-line">מטרה: [מה אני רוצה שיקרה]
+הקשר: [מי אני, איזה תהליך, מה כבר ידוע]
+תוצר: [מה בדיוק לקבל, ובאיזה פורמט]
+מגבלות: [אורך, טון, זמן, מה לא לכלול]
+לפני שאתה עונה: איזה מידע חסר לך? שאל אותי עד 5 שאלות, אחת בכל פעם.</span></div>
+  <div class="lab">הצבת מומחה</div>
+  <div class="pr"><button>העתקה</button><span>עכשיו תהיה [יו״ר ועדת הביקורת / מנהל היחידה המבוקרת]. בקר את התוצר: 5 נקודות חלשות, לפי סדר חשיבות, ואיך לחזק כל אחת.</span></div>
+  <div class="lab">עוד שתי טכניקות לנסות</div>
+  <div class="pr"><button>העתקה</button><span>ראיין אותי על [התהליך שאני בודק/ת]. שאלה אחת בכל פעם, עד 8 שאלות. בסוף סכם את הסיכונים שעלו.</span></div>
+  <div class="pr"><button>העתקה</button><span>הסבר לי מה זה [מושג] כאילו אני בן 12. ואז אותו דבר בשני משפטים למנהל.</span></div>
+  <div class="lab">אם אין לכם משימה</div>
+  <div class="pr"><button>העתקה</button><span>אני מבקר/ת פנים. הנוהל מחייב אישור מנהל להנחה מעל 10%. אני רוצה לבדוק אם התהליך עומד בנוהל. נסח 8 שאלות לראיון עם רכזת המכירות, בטבלה: שאלה · מה היא בודקת. שאלות פתוחות, בלי שאלות מנחות.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> מה השאלות של Copilot גילו לכם שלא חשבתם עליו? ומה המומחה מצא שאתם לא ראיתם?</div>
+</div>
+
+<h2>חלק 3 · סוכנים ותוצרים</h2>
+
+<div class="card ex" id="e5" style="--c:var(--p3)">
+  <div class="h"><span class="n">5</span><h3>בחרו סוכן, ובנו אותו</h3><span class="meta">12 דק׳</span></div>
+  <p class="goal">לבנות עוזר קבוע למשימה שחוזרת, עם הוראות שלא צריך לכתוב שוב.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו Agent Builder (״יצירת סוכן״).</li><li>בחרו אחד משמונת הסוכנים, או סוכן משלכם. תנו שם, והדביקו את ההוראות.</li><li>אופציונלי: הוסיפו אתר ציבורי כמקור ידע.</li><li>בדקו עם פרומפט הבדיקה, ותקנו את ההוראות לפי מה שחזר.</li></ol>
+  <div class="agent"><b>מנסח ממצאים</b><small>ממצא, קריטריון, סיבה, השפעה, המלצה</small>
+    <div class="pr"><button>העתקה</button><span>אתה מנסח ממצאי ביקורת. כשאני מתאר ממצא, החזר אותו במבנה קבוע: ממצא, קריטריון, סיבה, השפעה, המלצה. שפה עניינית, בלי שמות אנשים. אם חסר מידע לאחד הסעיפים, שאל אותי במקום להשלים.</span></div>
+    <div class="pr"><button>העתקה</button><span>ב-6 עסקאות מתוך 45 ניתנה הנחה מעל 10%. בשתיים מהן אין אישור מנהל.</span></div></div>
+  <div class="agent"><b>מסכם ישיבות</b><small>החלטות, משימות, נושאים פתוחים</small>
+    <div class="pr"><button>העתקה</button><span>אתה מסכם ישיבות בעברית. קבל תמלול או רשימות, והחזר שלושה חלקים: החלטות שהתקבלו; טבלת משימות עם אחראי ותאריך יעד; נושאים פתוחים. כתוב תמציתי ועניני. אל תמציא פרטים שלא מופיעים בטקסט.</span></div>
+    <div class="pr"><button>העתקה</button><span>הנה רשימות מישיבת הצוות: הוחלט לבדוק את תהליך ההנחות ברבעון הבא. דנה תאסוף 20 עסקאות לדוגמה עד ה-15. עוד לא הוחלט אם לראיין את הרכזת או את המנהל.</span></div></div>
+  <div class="agent"><b>מנסח מיילים רשמיים</b><small>מייל מנומס, ברור, בלי האשמה</small>
+    <div class="pr"><button>העתקה</button><span>אתה עוזר לכתיבת מיילים רשמיים בעברית. על סמך נקודות שאני נותן, נסח מייל ברור ומנומס עם פתיח וחתימה. אם לא ציינתי טון ואורך, שאל. הימנע מניסוח מאשים או מתנצל מדי.</span></div>
+    <div class="pr"><button>העתקה</button><span>מייל לראש היחידה המבוקרת: מצאנו שתי עסקאות עם הנחה מעל 10% בלי אישור. מבקשים התייחסות עד סוף החודש.</span></div></div>
+  <div class="agent"><b>מומחה Excel</b><small>מסביר ומתקן נוסחאות</small>
+    <div class="pr"><button>העתקה</button><span>אתה מומחה Excel. כשאני מתאר מה אני צריך, תן נוסחה אחת, הסבר במשפט אחד כל חלק בה, ואמור לאיזה תא להדביק. אם יש דרך פשוטה יותר, הצע אותה. אם הנתונים לא ברורים, שאל לפני שאתה כותב.</span></div>
+    <div class="pr"><button>העתקה</button><span>יש לי עמודת אזור ועמודת סכום סופי. אני רוצה את הסכום של אזור צפון בלבד.</span></div></div>
+  <div class="agent"><b>מכין לפגישת פתיחה</b><small>סדר יום, שאלות ומסמכים לבקש</small>
+    <div class="pr"><button>העתקה</button><span>אתה מכין פגישות פתיחה של ביקורת. כשאני נותן שם של תהליך ויחידה, החזר: סדר יום של 45 דקות, 8 שאלות פתוחות לפי נושאים, ורשימת מסמכים לבקש מהיחידה. אם חסר לך הקשר על התהליך, שאל קודם.</span></div>
+    <div class="pr"><button>העתקה</button><span>ביקורת על תהליך הרכש ביחידה 3. פגישת פתיחה בשבוע הבא.</span></div></div>
+  <div class="agent"><b>בודק ניסוח דוח</b><small>בהירות, טון, טענות בלי ביסוס</small>
+    <div class="pr"><button>העתקה</button><span>אתה עורך דוחות ביקורת. כשאני מדביק טקסט, סמן: משפטים לא ברורים, טון מאשים, וטענות בלי נתון או מקור. לכל אחד הצע ניסוח חלופי. אל תשנה את התוכן, רק את הניסוח.</span></div>
+    <div class="pr"><button>העתקה</button><span>היחידה לא מקפידה על הנוהל, וההנחות ניתנות בלי שום בקרה. ברור שמישהו מרוויח מזה.</span></div></div>
+  <div class="agent"><b>ממפה סיכונים</b><small>טבלת סבירות והשפעה</small>
+    <div class="pr"><button>העתקה</button><span>אתה מנתח סיכונים לביקורת פנים. כשאני מתאר תהליך, החזר טבלה: סיכון, סבירות (נמוכה, בינונית, גבוהה), השפעה, בקרה קיימת, ובדיקה מוצעת. סדר מהסיכון הגבוה לנמוך. שאל אם חסר לך מידע על התהליך.</span></div>
+    <div class="pr"><button>העתקה</button><span>תהליך מתן הנחות ללקוחות: איש המכירות מבקש, מנהל האזור מאשר, והרכזת מזינה למערכת.</span></div></div>
+  <div class="agent"><b>מסביר רגולציה</b><small>עונה מאתר ציבורי, עם הפניה. הוסיפו כמקור ידע אתר ממשלתי רלוונטי</small>
+    <div class="pr"><button>העתקה</button><span>אתה מסביר חוקים ונהלים ציבוריים בשפה פשוטה. ענה רק לפי האתרים שהוגדרו לך כמקור, וציין לכל תשובה את המקור. אם התשובה לא מופיעה במקורות, אמור זאת. בסוף הוסף ״מה זה אומר לביקורת שלי״ בשני משפטים.</span></div>
+    <div class="pr"><button>העתקה</button><span>מה התפקיד של מבקר פנים בגוף ציבורי, ולמי הוא מדווח?</span></div></div>
+  <div class="chk"><b>בדיקה עצמית:</b> הסוכן שאל על מידע שחסר, או המציא? אם המציא, חזקו בהוראות את המשפט ״שאל אותי במקום להשלים״.</div>
+  <p class="tip">Agent Builder חסום אצלכם? שמרו את ההוראות כקובץ טקסט, והדביקו אותן בתחילת כל שיחה.</p>
+</div>
+
+<div class="card ex" id="e6" style="--c:var(--p3)">
+  <div class="h"><span class="n">6</span><h3>מצלמים, ו-Copilot קורא</h3><span class="meta">16 דק׳</span></div>
+  <p class="goal">להפוך צילום מהטלפון למידע מסודר: כתב יד, חשבוניות, לוח או מסמך מודפס.</p>
+  <div class="lab">קודם כולם · צלמו את הפתק שעל המסך (6 דק׳)</div>
+  <ol class="steps"><li>צלמו בטלפון את השקף עם הפתק הצהוב.</li><li>העלו את התמונה ל-Copilot, והדביקו את הפרומפט.</li><li>בדקו: מה הוא קרא נכון, ומה סימן כלא ברור?</li></ol>
+  <div class="pr"><button>העתקה</button><span>חלץ את הטקסט מהתמונה. החזר: טבלת משימות (משימה, אחראי, תאריך יעד), רשימת נושאים פתוחים, ומייל סיכום קצר לצוות. סמן כל דבר שלא הצלחת לקרוא או שלא ברור.</span></div>
+  <div class="lab" style="margin-top:20px;color:var(--soft)">ואז על חומר שלכם · בחרו אפשרות אחת (10 דק׳)</div>
+  <div class="lab">אפשרות א׳ · סיכום בכתב יד</div>
+  <ol class="steps"><li>כתבו בעט 5-6 שורות סיכום של פגישה.</li><li>צלמו בטלפון, והעלו ל-Copilot (באפליקציה, או העבירו את התמונה למחשב).</li></ol>
+  <div class="pr"><button>העתקה</button><span>הנה צילום של סיכום שכתבתי ביד. הפוך אותו לסיכום מסודר: החלטות, משימות עם אחראי, ונושאים פתוחים. סמן כל מילה שלא הצלחת לקרוא.</span></div>
+  <div class="lab">אפשרות ב׳ · חשבוניות לטבלה</div>
+  <ol class="steps"><li>הורידו את שלוש החשבוניות מ״קבצי התרגול״ למעלה.</li><li>העלו את שלושתן לאותה שיחה.</li></ol>
+  <div class="pr"><button>העתקה</button><span>חלץ את שלוש החשבוניות לטבלה אחת: ספק, מספר חשבונית, תאריך, סכום לפני מע״מ, מע״מ, סה״כ. בדוק בכל אחת שהמע״מ הוא 18%, וסמן כל חישוב שגוי.</span></div>
+  <div class="lab">אפשרות ג׳ · לוח, פתק או מסמך</div>
+  <div class="pr"><button>העתקה</button><span>מה כתוב בתמונה? החזר רשימת משימות עם אחראי ותאריך, אם הם מופיעים. אם משהו לא ברור, שאל אותי.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> באחת החשבוניות יש טעות בחישוב. Copilot מצא אותה? ובכתב היד: אילו מילים הוא סימן שלא הצליח לקרוא?</div>
+  <p class="tip">בלי פרטים מזהים בצילום: שמות של מבוקרים, תעודות זהות, חתימות.</p>
+</div>
+
+<h2>חלק 4 · שעת אקסל</h2>
+
+<div class="card ex" id="e7" style="--c:var(--p2)">
+  <div class="h"><span class="n">7</span><h3>מה יש בקובץ, ומה הכי נמכר?</h3><span class="meta">12 דק׳ · תרגול_מכירות_ביקורת.xlsx</span></div>
+  <p class="goal">להבין קובץ שלא ראיתם, ואז לשאול אותו כמו אנליסט.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו שיחה חדשה וגררו לתוכה את הקובץ (או ״+״ ← העלאה).</li><li>בקשו מפה של מה יש בקובץ.</li><li>שאלו שאלות של אנליסט: טופ 3 לפי אזור, מוצר ואיש מכירות.</li><li>בחרו מספר אחד, ובדקו אותו בעצמכם בקובץ.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>מה יש בקובץ הזה? לכל גיליון: מה הוא מכיל, אילו עמודות, וכמה שורות. ובסוף: מה נראה לך חסר או חשוד בנתונים?</span></div>
+  <div class="pr"><button>העתקה</button><span>תן לי טופ 3 לפי אזור, לפי מוצר ולפי איש מכירות, לפי ״סכום סופי״. שלוש טבלאות קטנות. ואז: מה המוצר הנמכר ביותר לפי כמות יחידות?</span></div>
+  <div class="pr"><button>העתקה</button><span>על איזו עמודה הסתמכת? מה היה יוצא אם היית משתמש ב״סכום לפני הנחה״?</span></div>
+  <div class="pr"><button>העתקה</button><span>באיזה חודש היו הכי הרבה מכירות? ומה לדעתך ההסבר, לפי הנתונים בלבד?</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> מרכז 75,366 ₪ · ירושלים 61,502 ₪ · צפון 52,979 ₪. ״הכי נמכר״ לפי סכום: מחשב נייד. לפי כמות: עכבר אלחוטי. Copilot שאל לפי איזה מדד?</div>
+  <p class="tip">הצ׳אט מנתח את הקובץ, הוא לא משנה אותו.</p>
+</div>
+
+<div class="card ex" id="e8" style="--c:var(--p2)">
+  <div class="h"><span class="n">8</span><h3>VLOOKUP במילים: מחברים טבלאות</h3><span class="meta">10 דק׳</span></div>
+  <p class="goal">לחבר מידע מגיליון אחר לגיליון המכירות, בלי לדעת נוסחאות. ואז לקבל את הנוסחה עצמה.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>בקשו לחבר את הקטגוריה מ״קטלוג מוצרים״ לכל עסקה.</li><li>בקשו את הנוסחה, פתחו את הקובץ ב-Excel, והדביקו בעמודה L.</li><li>חשבו עמלה לכל איש מכירות מגיליון ״אנשי מכירות״.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>חבר לכל עסקה בגיליון ״מכירות״ את הקטגוריה מגיליון ״קטלוג מוצרים״, לפי קוד מוצר. החזר טבלה של סכום סופי לפי קטגוריה. ואז תן לי נוסחת XLOOKUP להדבקה בעמודה L, עם הסבר קצר.</span></div>
+  <div class="pr"><button>העתקה</button><span>חשב לכל איש מכירות את העמלה: סך הסכום הסופי שלו כפול אחוז העמלה בגיליון ״אנשי מכירות״. טבלה, ממוינת מהגבוה לנמוך.</span></div>
+  <div class="pr"><button>העתקה</button><span>כתוב נוסחה שמסמנת בעמודה חדשה ״לבדיקה״ כל עסקה שבה מחיר היחידה שונה מהמחיר בקטלוג.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> מחשוב 163,302 ₪ · אביזרים 34,464 ₪ · ריהוט 25,585 ₪ · אודיו 19,305 ₪. העמלה הגבוהה: רונית לוי, 2,957 ₪. הנוסחה ב-Excel נותנת את אותו מספר?</div>
+</div>
+
+<div class="card ex" id="e9" style="--c:var(--p2)">
+  <div class="h"><span class="n">9</span><h3>מנתונים לגרף</h3><span class="meta">8 דק׳</span></div>
+  <p class="goal">לבקש גרף בשפה רגילה, ולקבל גרף או את כל מה שצריך כדי לבנות אותו ב-Excel.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>בקשו גרף, ותארו אותו עד הסוף: סוג, צירים, כותרת.</li><li>בקשו גרף שני של מגמה חודשית.</li><li>אם לא מופיע גרף בשיחה: בקשו טבלה קטנה וצעדים, ובנו אותו ב-Excel.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>צור גרף עמודות של סכום סופי לפי אזור, ממוין מהגבוה לנמוך. כותרת: מכירות לפי אזור. ואז גרף קו של סכום סופי לפי חודש.</span></div>
+  <div class="pr"><button>העתקה</button><span>תן לי את הנתונים לגרף כטבלה קטנה, ואת הצעדים המדויקים ליצור ממנה גרף עמודות ב-Excel.</span></div>
+  <div class="pr"><button>העתקה</button><span>איזה גרף הכי מתאים להציג את חלוקת המכירות לפי קטגוריה למנהל? הסבר במשפט למה.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> בגרף החודשי, מרץ הוא הגבוה (56,061 ₪). כך יצא גם אצלכם?</div>
+</div>
+
+<div class="card ex" id="e10" style="--c:var(--p2)">
+  <div class="h"><span class="n">10</span><h3>מצאו את החריגות</h3><span class="meta">12 דק׳ · גיליון ״מדיניות״</span></div>
+  <p class="goal">לבדוק כל עסקה מול חמשת כללי המדיניות, כמו בביקורת אמיתית.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו את גיליון ״מדיניות״ בקובץ וקראו את חמשת הכללים.</li><li>בקשו מ-Copilot טבלת חריגות עם מספר שורה.</li><li>אמתו שתי חריגות בקובץ עצמו.</li><li>שאלו מה הוא לא בדק.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>בדוק כל עסקה בגיליון ״מכירות״ מול חמשת הכללים בגיליון ״מדיניות״. החזר טבלה: מספר שורה, תאריך, איש מכירות, הכלל שהופר, והסבר קצר. אל תכלול עסקה שיש לה אישור הנחה. בסוף כתוב מה לא הצלחת לבדוק.</span></div>
+  <div class="pr"><button>העתקה</button><span>עבור על הטבלה שלך שוב. האם יש חריגה שסימנת בטעות? והאם יש כלל שלא בדקת על כל השורות?</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> בקובץ מסתתרות כמה חריגות, ועסקה אחת שנראית חריגה אבל לא. המנחה יחשוף את התשובות בסוף התרגיל.</div>
+</div>
+
+<h2 id="lib">פרומפטים לשימוש חוזר</h2>
+<div class="card" style="margin-top:14px">
+  <div class="lab">לבנות בקשה</div><div class="pr"><button>העתקה</button><span>אני רוצה להכין [מה]. לפני שאתה מתחיל, שאל אותי שאלה אחת בכל פעם על המטרה, ההקשר, התוצר והמגבלות.</span></div>
+  <div class="lab">ביקורת עצמית</div><div class="pr"><button>העתקה</button><span>מה חסר בתשובה שלך? איזו הנחה הנחת שלא אמרתי לך? ומה כדאי לי לבדוק לפני שאני משתמש/ת בזה?</span></div>
+  <div class="lab">סיכום מסמך</div><div class="pr"><button>העתקה</button><span>על סמך המסמך המצורף בלבד: סכם ב-5 נקודות, ציין לכל נקודה סעיף או עמוד. אם משהו לא מופיע במסמך, כתוב שהוא לא מופיע.</span></div>
+  <div class="lab">השוואת נוהל לביצוע</div><div class="pr"><button>העתקה</button><span>הנה הנוהל ותיאור של מה שקרה בפועל. החזר טבלה: דרישת הנוהל, מה נעשה בפועל, פער, וחומרה (נמוכה, בינונית, גבוהה).</span></div>
+  <div class="lab">מייל ממצא</div><div class="pr"><button>העתקה</button><span>נסח מייל קצר ועניני לראש היחידה המבוקרת: מצאנו [ממצא]. בקש התייחסות עד [תאריך]. טון מכבד, בלי האשמה, עד 6 שורות.</span></div>
+  <div class="lab">צ׳אט זמני</div><p class="tip" style="margin:0">לבדיקה מהירה שלא תישמר בהיסטוריה ובזיכרון: התפריט ליד ״צ׳אט חדש״ ← צ׳אט זמני. זה לא היתר לשתף מידע רגיש. הכללים זהים.</p>
+</div>
+
+<h2>בונוס</h2>
+<div class="card ex" id="bonus" style="--c:var(--p3)">
+  <div class="h"><span class="n">+</span><h3>בונוס: מהצ׳אט לתוצר</h3><span class="meta">10 דק׳ · בחרו אחד</span></div>
+  <p class="goal">לקחת תשובה מהצ׳אט ולהפוך אותה לתוצר שעובדים איתו הלאה.</p>
+  <div class="lab">אפשרות א׳ · Pages ← Word</div>
+  <ol class="steps"><li>בקשו תוכנית עבודה לביקורת.</li><li>העבירו את התשובה ל-Pages, וערכו משפט אחד ידנית.</li><li>בקשו לשכתב סעיף אחד, וייצאו ל-Word.</li></ol>
+  <div class="pr"><button>העתקה</button><span>כתוב תוכנית עבודה קצרה לביקורת על תהליך מתן הנחות, בארבעה שלבים: תכנון, איסוף ראיות, בדיקות, דיווח. לכל שלב: מה עושים, מי אחראי, וכמה זמן.</span></div>
+  <div class="pr"><button>העתקה</button><span>שכתב את השלב השני כך שיהיה קצר וברור יותר, והוסף שלב של בקרת איכות לפני הדיווח.</span></div>
+  <div class="lab">אפשרות ב׳ · תמונה</div>
+  <ol class="steps"><li>תארו נושא, סגנון וצבעים, ומה לא להכניס.</li><li>בקשו וריאציה אחת עם שינוי אחד בלבד.</li><li>הורידו את התמונה שאהבתם.</li></ol>
+  <div class="pr"><button>העתקה</button><span>צור איור שטוח ומינימליסטי של מבקר שבודק גרף על מסך, בגוונים ירוק וכחול, רקע בהיר, בלי טקסט בתמונה. פורמט רחב לשקף.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> ב-Pages, כשביקשתם לשכתב סעיף, שאר המסמך נשאר כמו שהיה? זה כל ההבדל מצ׳אט רגיל.</div>
+</div>
+
+
+<footer>ערכת משתתף · סדנת Copilot לחטיבת הביקורת · קווין גל ליאקס · הנתונים בקבצי התרגול בדיוניים</footer>
+</div>
+<script>
+document.querySelectorAll('.pr button').forEach(b=>b.onclick=()=>{const t=b.nextElementSibling.innerText;const ok=()=>{b.textContent='הועתק ✓';setTimeout(()=>b.textContent='העתקה',1500)};
+  try{navigator.clipboard.writeText(t).then(ok,()=>{const r=document.createRange();r.selectNodeContents(b.nextElementSibling);getSelection().removeAllRanges();getSelection().addRange(r);b.textContent='סומן: Ctrl+C'})}catch(e){}});
+</script>
+</body>
+</html>
