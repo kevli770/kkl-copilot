@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ערכת משתתף · מפגש 2 · Copilot לחטיבת הביקורת</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#F4F1EA;--ink2:#FFFFFF;--ink3:#EDE8DF;--line:#DCD4C5;--paper:#1C2230;--soft:#3A4150;--mute:#666D7C;--dim:#9298A4;
+  --p1:#1E9A5E;--p2:#2F6BC2;--p3:#C07A12;--p4:#D2553A;--serif:'Frank Ruhl Libre',serif;--sans:'IBM Plex Sans Hebrew',sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--ink);color:var(--paper);font:400 17px/1.65 var(--sans)}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 80px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--ink) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .in{max-width:920px;margin:0 auto;padding:10px 20px;display:flex;gap:8px;overflow-x:auto;white-space:nowrap}
+nav a{font:600 13px var(--mono);text-decoration:none;color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:5px 12px;background:var(--ink2)}
+nav a:hover{color:var(--paper);border-color:var(--mute)}
+header{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+.kick{font:600 13px var(--mono);letter-spacing:.14em;color:var(--p2);display:flex;gap:12px;align-items:center}
+.kick::before{content:"";width:28px;height:2px;background:var(--p2)}
+h1{font:900 clamp(36px,6vw,58px)/1.05 var(--serif);margin:12px 0}
+h1 em{font-style:normal;color:var(--p2)}
+.lead{color:var(--mute);font-size:19px;max-width:640px}
+h2{font:900 30px var(--serif);margin:48px 0 6px}
+.part{color:var(--mute);margin-bottom:6px}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:0 1px 2px rgba(60,45,20,.06)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.rule{border-color:var(--p3)}.rule b{color:var(--p3)}
+.files a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:12px 14px;border-radius:12px;background:var(--ink3);margin-top:10px}
+.files a:hover{outline:1px solid var(--p2)}
+.x{font:700 11px var(--mono);background:#1D6F42;color:#fff;border-radius:4px;padding:3px 6px}
+.files small{color:var(--mute);display:block;font-size:14px}
+.ex{margin-top:22px;border-right:5px solid var(--c);scroll-margin-top:70px}
+.ex .h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ex .n{font:900 44px/1 var(--serif);color:var(--c)}
+.ex h3{font-size:24px}
+.ex .meta{font:600 13px var(--mono);color:var(--mute);margin-right:auto}
+.ex .goal{color:var(--soft);margin:8px 0 12px}
+.lab{font:600 12px var(--mono);letter-spacing:.12em;color:var(--dim);margin:14px 0 6px}
+ol.steps{padding-right:22px}ol.steps li{margin-bottom:4px}ol.steps li::marker{color:var(--c);font-family:var(--mono)}
+.pr{position:relative;background:var(--ink3);border:1px dashed var(--line);border-radius:12px;padding:12px 16px 12px 96px;margin-top:8px;color:var(--soft)}
+.pr button{position:absolute;left:10px;top:10px;background:var(--paper);color:var(--ink2);border:0;border-radius:8px;padding:6px 12px;font:700 14px var(--sans);cursor:pointer}
+.chk{margin-top:12px;padding:12px 16px;border-radius:12px;background:color-mix(in srgb,var(--p1) 10%,transparent);color:var(--soft)}
+.chk b{color:var(--p1)}
+.tip{margin-top:10px;font-size:15px;color:var(--mute)}
+.agent{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px}
+.agent b{font-size:18px}.agent small{color:var(--mute);display:block}
+.method{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:700px){.method{grid-template-columns:1fr 1fr}}
+.method div{border-top:3px solid var(--c);padding-top:8px}.method b{display:block;font-size:19px}.method span{font-size:14px;color:var(--mute)}
+footer{margin-top:60px;color:var(--dim);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+<nav><div class="in"><a href="#start">לפני שמתחילים</a><a href="#e1">1</a><a href="#e2">2</a><a href="#e3">3</a><a href="#e4">4</a><a href="#e5">5</a><a href="#e6">6</a><a href="#e7">7</a><a href="#e8">8</a><a href="#e9">9</a><a href="../">ערכת מפגש 1</a></div></nav>
+<div class="wrap">
+<header>
+  <div class="kick">ערכת משתתף · מפגש 2</div>
+  <h1>אקסל, <em>ומחקר עם מקורות</em></h1>
+  <p class="lead">תשעה תרגילים: ארבעה של אקסל ב-Copilot, וחמישה של מחקר עם מקורות ב-Perplexity וב-Gemini. כשהמנחה אומר ״תרגיל 5״, לחצו על 5 בסרגל למעלה.</p>
+</header>
+
+<h2 id="start">לפני שמתחילים</h2>
+<div class="grid2" style="margin-top:14px">
+  <div class="card"><b>חלק 1 · Copilot</b><p style="color:var(--soft)">Microsoft 365 Copilot Chat עם החשבון הארגוני: <span style="direction:ltr;display:inline-block">m365.cloud.microsoft</span>. ודאו שמופיע הסימון ״מוגן״.</p></div>
+  <div class="card rule"><b>חלק 2 · מידע ציבורי בלבד</b><p style="color:var(--soft)">ב-Perplexity וב-Gemini עובדים רק עם מידע שכבר פומבי: תקנים, חוקים, מאמרים. לא מעלים אליהם קבצים, נתונים או מסמכים של העבודה.</p></div>
+</div>
+<div class="card files" style="margin-top:14px"><b>קובץ התרגול</b>
+  <a href="../קבצים/תרגול_מכירות_ביקורת.xlsx" download><span class="x">XLSX</span><span>תרגול_מכירות_ביקורת.xlsx<small>45 עסקאות, מחירון, אנשי מכירות, וגיליון ״מדיניות״. לתרגילים 1-4</small></span></a>
+</div>
+
+<h2>חלק 1 · אקסל ב-Copilot</h2>
+<p class="part">מעלים את הקובץ לשיחה. הצ׳אט מנתח אותו ולא משנה אותו. נוסחאות מקבלים ממנו, ומדביקים בעצמכם ב-Excel.</p>
+<div class="card ex" id="e1" style="--c:var(--p2)">
+  <div class="h"><span class="n">1</span><h3>מה יש בקובץ, ומה הכי נמכר?</h3><span class="meta">12 דק׳ · תרגול_מכירות_ביקורת.xlsx</span></div>
+  <p class="goal">להבין קובץ שלא ראיתם, ואז לשאול אותו כמו אנליסט.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו שיחה חדשה וגררו לתוכה את הקובץ (או ״+״ ← העלאה).</li><li>בקשו מפה של מה יש בקובץ.</li><li>שאלו שאלות של אנליסט: טופ 3 לפי אזור, מוצר ואיש מכירות.</li><li>בחרו מספר אחד, ובדקו אותו בעצמכם בקובץ.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>מה יש בקובץ הזה? לכל גיליון: מה הוא מכיל, אילו עמודות, וכמה שורות. ובסוף: מה נראה לך חסר או חשוד בנתונים?</span></div>
+  <div class="pr"><button>העתקה</button><span>תן לי טופ 3 לפי אזור, לפי מוצר ולפי איש מכירות, לפי ״סכום סופי״. שלוש טבלאות קטנות. ואז: מה המוצר הנמכר ביותר לפי כמות יחידות?</span></div>
+  <div class="pr"><button>העתקה</button><span>על איזו עמודה הסתמכת? מה היה יוצא אם היית משתמש ב״סכום לפני הנחה״?</span></div>
+  <div class="pr"><button>העתקה</button><span>באיזה חודש היו הכי הרבה מכירות? ומה לדעתך ההסבר, לפי הנתונים בלבד?</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> מרכז 75,366 ₪ · ירושלים 61,502 ₪ · צפון 52,979 ₪. ״הכי נמכר״ לפי סכום: מחשב נייד. לפי כמות: עכבר אלחוטי. Copilot שאל לפי איזה מדד?</div>
+  <p class="tip">הצ׳אט מנתח את הקובץ, הוא לא משנה אותו.</p>
+</div>
+
+<div class="card ex" id="e2" style="--c:var(--p2)">
+  <div class="h"><span class="n">2</span><h3>VLOOKUP במילים: מחברים טבלאות</h3><span class="meta">10 דק׳</span></div>
+  <p class="goal">לחבר מידע מגיליון אחר לגיליון המכירות, בלי לדעת נוסחאות. ואז לקבל את הנוסחה עצמה.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>בקשו לחבר את הקטגוריה מ״קטלוג מוצרים״ לכל עסקה.</li><li>בקשו את הנוסחה, פתחו את הקובץ ב-Excel, והדביקו בעמודה L.</li><li>חשבו עמלה לכל איש מכירות מגיליון ״אנשי מכירות״.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>חבר לכל עסקה בגיליון ״מכירות״ את הקטגוריה מגיליון ״קטלוג מוצרים״, לפי קוד מוצר. החזר טבלה של סכום סופי לפי קטגוריה. ואז תן לי נוסחת XLOOKUP להדבקה בעמודה L, עם הסבר קצר.</span></div>
+  <div class="pr"><button>העתקה</button><span>חשב לכל איש מכירות את העמלה: סך הסכום הסופי שלו כפול אחוז העמלה בגיליון ״אנשי מכירות״. טבלה, ממוינת מהגבוה לנמוך.</span></div>
+  <div class="pr"><button>העתקה</button><span>כתוב נוסחה שמסמנת בעמודה חדשה ״לבדיקה״ כל עסקה שבה מחיר היחידה שונה מהמחיר בקטלוג.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> מחשוב 163,302 ₪ · אביזרים 34,464 ₪ · ריהוט 25,585 ₪ · אודיו 19,305 ₪. העמלה הגבוהה: רונית לוי, 2,957 ₪. הנוסחה ב-Excel נותנת את אותו מספר?</div>
+</div>
+
+<div class="card ex" id="e3" style="--c:var(--p2)">
+  <div class="h"><span class="n">3</span><h3>מנתונים לגרף</h3><span class="meta">8 דק׳</span></div>
+  <p class="goal">לבקש גרף בשפה רגילה, ולקבל גרף או את כל מה שצריך כדי לבנות אותו ב-Excel.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>בקשו גרף, ותארו אותו עד הסוף: סוג, צירים, כותרת.</li><li>בקשו גרף שני של מגמה חודשית.</li><li>אם לא מופיע גרף בשיחה: בקשו טבלה קטנה וצעדים, ובנו אותו ב-Excel.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>צור גרף עמודות של סכום סופי לפי אזור, ממוין מהגבוה לנמוך. כותרת: מכירות לפי אזור. ואז גרף קו של סכום סופי לפי חודש.</span></div>
+  <div class="pr"><button>העתקה</button><span>תן לי את הנתונים לגרף כטבלה קטנה, ואת הצעדים המדויקים ליצור ממנה גרף עמודות ב-Excel.</span></div>
+  <div class="pr"><button>העתקה</button><span>איזה גרף הכי מתאים להציג את חלוקת המכירות לפי קטגוריה למנהל? הסבר במשפט למה.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> בגרף החודשי, מרץ הוא הגבוה (56,061 ₪). כך יצא גם אצלכם?</div>
+</div>
+
+<div class="card ex" id="e4" style="--c:var(--p2)">
+  <div class="h"><span class="n">4</span><h3>מצאו את החריגות</h3><span class="meta">12 דק׳ · גיליון ״מדיניות״</span></div>
+  <p class="goal">לבדוק כל עסקה מול חמשת כללי המדיניות, כמו בביקורת אמיתית.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו את גיליון ״מדיניות״ בקובץ וקראו את חמשת הכללים.</li><li>בקשו מ-Copilot טבלת חריגות עם מספר שורה.</li><li>אמתו שתי חריגות בקובץ עצמו.</li><li>שאלו מה הוא לא בדק.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>בדוק כל עסקה בגיליון ״מכירות״ מול חמשת הכללים בגיליון ״מדיניות״. החזר טבלה: מספר שורה, תאריך, איש מכירות, הכלל שהופר, והסבר קצר. אל תכלול עסקה שיש לה אישור הנחה. בסוף כתוב מה לא הצלחת לבדוק.</span></div>
+  <div class="pr"><button>העתקה</button><span>עבור על הטבלה שלך שוב. האם יש חריגה שסימנת בטעות? והאם יש כלל שלא בדקת על כל השורות?</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> בקובץ מסתתרות כמה חריגות, ועסקה אחת שנראית חריגה אבל לא. המנחה יחשוף את התשובות בסוף התרגיל.</div>
+</div>
+
+<h2>חלק 2 · מחקר עם מקורות</h2>
+<p class="part">מידע ציבורי בלבד. לא מעלים ל-Perplexity או ל-Gemini שום דבר ארגוני.</p>
+
+<div class="card ex" id="e5" style="--c:var(--p4)">
+  <div class="h"><span class="n">5</span><h3>שאלה עם מקורות</h3><span class="meta">12 דק׳ · perplexity.ai</span></div>
+  <p class="goal">לקבל תשובה שמראה מאיפה כל משפט הגיע, ולבדוק את המקורות.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו את perplexity.ai (אפשר בלי חשבון) והדביקו את השאלה.</li><li>עברו על רשימת המקורות: מי כתב כל אחד? אתר רשמי, חברת ייעוץ, בלוג?</li><li>פתחו שני מקורות, ובדקו שהם באמת אומרים את מה שכתוב בתשובה.</li><li>שאלו שאלת המשך, רק ממקורות רשמיים.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>מה עיקרי התקנים הגלובליים החדשים לביקורת פנימית של IIA, שנכנסו לתוקף ב-2025? 5 נקודות, עם מקור לכל נקודה.</span></div>
+  <div class="pr"><button>העתקה</button><span>ענה שוב, רק ממקורות רשמיים: אתר ה-IIA ולשכת המבקרים הפנימיים בישראל. מה השתנה לעומת התקנים הקודמים?</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> מצאתם משפט בתשובה שהמקור שלו לא אומר אותו בדיוק? זה בדיוק מה שבודקים.</div>
+  <p class="tip">שמרו 2-3 קישורים טובים. תשתמשו בהם בתרגיל 9.</p>
+</div>
+
+<div class="card ex" id="e6" style="--c:var(--p4)">
+  <div class="h"><span class="n">6</span><h3>נכון או לא? בדיקת עובדות</h3><span class="meta">10 דק׳ · perplexity.ai</span></div>
+  <p class="goal">לבדוק טענות עם מקור, ולראות מה קורה כשטענה שגויה מנוסחת בביטחון.</p>
+  <div class="lab">שלוש טענות לבדיקה</div>
+  <ol class="steps"><li>חוק הביקורת הפנימית בישראל נחקק ב-1992.</li><li>התקנים הגלובליים החדשים של IIA נכנסו לתוקף בינואר 2025.</li><li>מבקר פנים בגוף ציבורי ממונה על ידי מבקר המדינה.</li></ol>
+  <div class="lab">פרומפט</div>
+  <div class="pr"><button>העתקה</button><span>בדוק את הטענה הבאה. האם היא נכונה, חלקית, או לא נכונה? הסבר במשפט אחד, וצרף את המקור הרשמי ביותר שמצאת: [הטענה]</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> אחת משלוש הטענות לא נכונה. המנחה יחשוף בסוף התרגיל. נסו גם לנסח את הטענה השגויה כעובדה (״הסבר למה מבקר המדינה ממנה...״). האם Perplexity תיקן אתכם?</div>
+</div>
+
+<div class="card ex" id="e7" style="--c:var(--p2)">
+  <div class="h"><span class="n">7</span><h3>הזמינו דוח מחקר</h3><span class="meta">15 דק׳ · gemini.google.com</span></div>
+  <p class="goal">להפוך שאלה אחת לדוח מחקר מסודר, מעשרות אתרים, עם מקורות.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>ב-Gemini, בחרו ״Deep Research״ (בתפריט הכלים ליד שורת הכתיבה), והדביקו את הנושא.</li><li>Gemini יציג תוכנית מחקר. ערכו אותה לפני שמאשרים, למשל ״התמקד בגופים ציבוריים״.</li><li>המחקר לוקח 5-15 דקות. בינתיים עברו לתרגיל 8.</li><li>כשהדוח מוכן: ייצאו ל-Google Docs, ובדקו שני מקורות מתוכו.</li></ol>
+  <div class="lab">פרומפט</div>
+  <div class="pr"><button>העתקה</button><span>איך גופים ציבוריים בישראל ובעולם משלבים AI בעבודת הביקורת הפנימית? מה הסיכונים, ואילו המלצות קיימות? דוח של 2 עמודים, עם מקורות.</span></div>
+  <div class="lab">או נושא משלכם (ציבורי)</div>
+  <div class="pr"><button>העתקה</button><span>אני מבקר/ת פנים ומתכנן/ת ביקורת על [תהליך]. מה הסיכונים המוכרים בתהליך הזה, לפי מקורות מקצועיים? אילו בדיקות מומלצות? דוח של 2 עמודים, עם מקורות.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> בחרו טענה אחת מהדוח עם מספר או תאריך, ופתחו את המקור שלה. הוא אומר את זה?</div>
+  <p class="tip">בחינם יש מגבלה, והיא נגמרת מהר יותר משיחה רגילה. מחקר אחד מספיק.</p>
+</div>
+
+<div class="card ex" id="e8" style="--c:var(--p1)">
+  <div class="h"><span class="n">8</span><h3>איור לדוח או לניוזלטר</h3><span class="meta">15 דק׳ · gemini.google.com</span></div>
+  <p class="goal">ליצור תמונה מתיאור במילים, ולערוך אותה שינוי אחרי שינוי.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>תארו נושא, סגנון וצבעים, ומה לא להכניס.</li><li>ערכו: שינוי אחד בכל פעם, בשפה רגילה.</li><li>נסו כותרת בעברית בתוך התמונה, ובדקו אותה אות אחרי אות.</li></ol>
+  <div class="lab">פרומפטים</div>
+  <div class="pr"><button>העתקה</button><span>צור איור שטוח ומינימליסטי של צוות שבודק מסמכים ליד שולחן, בגוונים ירוק וכחול, רקע בהיר, בלי טקסט בתמונה. פורמט רחב.</span></div>
+  <div class="pr"><button>העתקה</button><span>אותו איור, אבל בשעת ערב, ועם כותרת גדולה למעלה: ״ביקורת שמוסיפה ערך״.</span></div>
+  <div class="pr"><button>העתקה</button><span>צור אינפוגרפיקה אנכית של 5 שלבי ביקורת: תכנון, איסוף ראיות, בדיקות, ממצאים, מעקב. אייקון פשוט לכל שלב, צבעים ירוק וכחול.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> הטקסט העברי בתמונה יצא נכון? אם לא, עדיף איור בלי טקסט ולהוסיף את הכותרת ב-PowerPoint.</div>
+  <p class="tip">לא מעלים תמונות של אנשים מהעבודה, ולא לוגו של הארגון.</p>
+</div>
+
+<div class="card ex" id="e9" style="--c:var(--p3)">
+  <div class="h"><span class="n">9</span><h3>מחברת על המקורות שמצאתם</h3><span class="meta">20 דק׳ · Gemini Notebook</span></div>
+  <p class="goal">לשאול שאלות שהתשובה עליהן מגיעה רק מהמקורות שבחרתם, עם הפניה, ולקבל סקירה קולית.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>פתחו את Gemini Notebook (עד יולי 2026 נקרא NotebookLM) וצרו מחברת חדשה.</li><li>הוסיפו כמקורות 2-3 קישורים מתרגיל 5, או את הדוח מתרגיל 7.</li><li>הפעילו סקירה קולית (Audio Overview). היא לוקחת כמה דקות.</li><li>בינתיים: שאלו שאלה עם הפניה, וצרו מפת חשיבה.</li></ol>
+  <div class="lab">פרומפט</div>
+  <div class="pr"><button>העתקה</button><span>על סמך המקורות בלבד: מה שלושת השינויים שהכי ישפיעו על העבודה היומיומית של מבקר פנים? ציין מקור לכל אחד. אם משהו לא מופיע במקורות, כתוב שהוא לא מופיע.</span></div>
+  <div class="pr"><button>העתקה</button><span>הכן לי 10 שאלות חזרה על החומר, עם התשובה והמקור לכל שאלה.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> שאלו שאלה שהתשובה עליה לא נמצאת במקורות (למשל ״מה התקציב של הלשכה?״). המחברת אמרה שזה לא מופיע, או המציאה?</div>
+  <p class="tip">בחינם: כ-3 סקירות קוליות ביום.</p>
+</div>
+
+<footer>ערכת משתתף · מפגש 2 · סדנת Copilot לחטיבת הביקורת · קווין גל ליאקס · הנתונים בקובץ התרגול בדיוניים</footer>
+</div>
+<script>
+document.querySelectorAll('.pr button').forEach(b=>b.onclick=()=>{const t=b.nextElementSibling.innerText;const ok=()=>{b.textContent='הועתק ✓';setTimeout(()=>b.textContent='העתקה',1500)};
+  try{navigator.clipboard.writeText(t).then(ok,()=>{const r=document.createRange();r.selectNodeContents(b.nextElementSibling);getSelection().removeAllRanges();getSelection().addRange(r);b.textContent='סומן: Ctrl+C'})}catch(e){}});
+</script>
+</body>
+</html>
