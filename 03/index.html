@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ערכת משתתף · מפגש 3 · Copilot לחטיבת הביקורת</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#F4F1EA;--ink2:#FFFFFF;--ink3:#EDE8DF;--line:#DCD4C5;--paper:#1C2230;--soft:#3A4150;--mute:#666D7C;--dim:#9298A4;
+  --p1:#1E9A5E;--p2:#2F6BC2;--p3:#C07A12;--p4:#D2553A;--serif:'Frank Ruhl Libre',serif;--sans:'IBM Plex Sans Hebrew',sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--ink);color:var(--paper);font:400 17px/1.65 var(--sans)}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 80px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--ink) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .in{max-width:920px;margin:0 auto;padding:10px 20px;display:flex;gap:8px;overflow-x:auto;white-space:nowrap}
+nav a{font:600 13px var(--mono);text-decoration:none;color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:5px 12px;background:var(--ink2)}
+nav a:hover{color:var(--paper);border-color:var(--mute)}
+header{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+.kick{font:600 13px var(--mono);letter-spacing:.14em;color:var(--p2);display:flex;gap:12px;align-items:center}
+.kick::before{content:"";width:28px;height:2px;background:var(--p2)}
+h1{font:900 clamp(36px,6vw,58px)/1.05 var(--serif);margin:12px 0}
+h1 em{font-style:normal;color:var(--p2)}
+.lead{color:var(--mute);font-size:19px;max-width:640px}
+h2{font:900 30px var(--serif);margin:48px 0 6px}
+.part{color:var(--mute);margin-bottom:6px}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:0 1px 2px rgba(60,45,20,.06)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.rule{border-color:var(--p3)}.rule b{color:var(--p3)}
+.files a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:12px 14px;border-radius:12px;background:var(--ink3);margin-top:10px}
+.files a:hover{outline:1px solid var(--p2)}
+.x{font:700 11px var(--mono);background:#1D6F42;color:#fff;border-radius:4px;padding:3px 6px}
+.files small{color:var(--mute);display:block;font-size:14px}
+.ex{margin-top:22px;border-right:5px solid var(--c);scroll-margin-top:70px}
+.ex .h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ex .n{font:900 44px/1 var(--serif);color:var(--c)}
+.ex h3{font-size:24px}
+.ex .meta{font:600 13px var(--mono);color:var(--mute);margin-right:auto}
+.ex .goal{color:var(--soft);margin:8px 0 12px}
+.lab{font:600 12px var(--mono);letter-spacing:.12em;color:var(--dim);margin:14px 0 6px}
+ol.steps{padding-right:22px}ol.steps li{margin-bottom:4px}ol.steps li::marker{color:var(--c);font-family:var(--mono)}
+.pr{position:relative;background:var(--ink3);border:1px dashed var(--line);border-radius:12px;padding:12px 16px 12px 96px;margin-top:8px;color:var(--soft)}
+.pr button{position:absolute;left:10px;top:10px;background:var(--paper);color:var(--ink2);border:0;border-radius:8px;padding:6px 12px;font:700 14px var(--sans);cursor:pointer}
+.chk{margin-top:12px;padding:12px 16px;border-radius:12px;background:color-mix(in srgb,var(--p1) 10%,transparent);color:var(--soft)}
+.chk b{color:var(--p1)}
+.tip{margin-top:10px;font-size:15px;color:var(--mute)}
+.agent{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px}
+.agent b{font-size:18px}.agent small{color:var(--mute);display:block}
+.method{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:700px){.method{grid-template-columns:1fr 1fr}}
+.method div{border-top:3px solid var(--c);padding-top:8px}.method b{display:block;font-size:19px}.method span{font-size:14px;color:var(--mute)}
+footer{margin-top:60px;color:var(--dim);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+<nav><div class="in"><a href="#start">לפני שמתחילים</a><a href="#e1">1</a><a href="#e2">2</a><a href="#e3">3</a><a href="#e4">4</a><a href="#e5">5</a><a href="#e6">6</a><a href="../">מפגש 1</a><a href="../02/">מפגש 2</a></div></nav>
+<div class="wrap">
+<header>
+  <div class="kick">ערכת משתתף · מפגש 3</div>
+  <h1>מתארים במילים. <em>מקבלים אפליקציה.</em></h1>
+  <p class="lead">שישה תרגילים: מתכננים ב-Copilot, בונים ב-Base44, משתפים, ומבקרים את מה שנבנה. כשהמנחה אומר ״תרגיל 3״, לחצו על 3 בסרגל למעלה.</p>
+</header>
+
+<h2 id="start">לפני שמתחילים</h2>
+<div class="grid2" style="margin-top:14px">
+  <div class="card"><b>כל הודעה שווה זהב</b><p style="color:var(--soft)">בחינם ל-Base44 יש מכסה קטנה: 25 הודעות בחודש, ולפי חלק מהמקורות גם כ-5 ביום. מתכננים ב-Copilot, ושולחים ל-Base44 הודעה אחת מפורטת.</p></div>
+  <div class="card rule"><b>נתונים בדויים בלבד</b><p style="color:var(--soft)">Base44 הוא כלי חיצוני. לא מכניסים אליו נתונים, שמות או מסמכים אמיתיים מהעבודה. עובדים עם החריגות מקובץ התרגול.</p></div>
+</div>
+
+<h2>חלק 1 · בונים ב-Base44</h2>
+
+<div class="card ex" id="e1" style="--c:var(--p4)">
+  <div class="h"><span class="n">1</span><h3>Copilot כותב את הפרומפט</h3><span class="meta">10 דק׳ · Copilot</span></div>
+  <p class="goal">לתכנן את האפליקציה לפני שבונים, בלי לגעת במכסה של Base44.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>תארו ל-Copilot את האפליקציה במשפט או שניים.</li><li>ענו על השאלות שלו: מי משתמש, אילו מסכים, שדות וסטטוסים.</li><li>שמרו את הפרומפט שקיבלתם. הוא הולך ל-Base44 בתרגיל 2.</li></ol>
+  <div class="lab">פרומפט</div>
+  <div class="pr"><button>העתקה</button><span>אני רוצה לבנות ב-Base44 אפליקציה ל[מעקב ממצאי ביקורת]. לפני שאתה כותב, שאל אותי עד 5 שאלות: מי משתמש, אילו מסכים, אילו שדות וסטטוסים. ואז כתוב פרומפט אחד מפורט ל-Base44, שמתאר את כל האפליקציה בהודעה אחת.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> הפרומפט שקיבלתם מפרט מסכים, שדות, סטטוסים ומי משתמש? אם חסר אחד מהם, בקשו מ-Copilot להוסיף.</div>
+</div>
+
+<div class="card ex" id="e2" style="--c:var(--p4)">
+  <div class="h"><span class="n">2</span><h3>הודעה אחת, אפליקציה שלמה</h3><span class="meta">15 דק׳ · base44.com</span></div>
+  <p class="goal">לבנות אפליקציה עובדת מהודעה אחת.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>היכנסו ל-base44.com עם חשבון Google אישי.</li><li>הדביקו את הפרומפט מתרגיל 1 (או את המוכן כאן), ושלחו.</li><li>בזמן הבנייה (1-3 דקות): קראו את התוכנית ש-Base44 מציג.</li><li>נסו את האפליקציה: הוסיפו ממצא, שנו סטטוס.</li></ol>
+  <div class="lab">פרומפט מוכן</div>
+  <div class="pr"><button>העתקה</button><span>בנה אפליקציה בעברית, מימין לשמאל, למעקב ממצאי ביקורת. לכל ממצא: כותרת, יחידה מבוקרת, חומרה (נמוכה, בינונית, גבוהה), אחראי לתיקון, תאריך יעד, וסטטוס (פתוח, בטיפול, נסגר). מסך ראשי: טבלה עם סינון לפי סטטוס וחומרה, ומונים למעלה. טופס להוספת ממצא. עיצוב נקי ובהיר.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> האפליקציה מימין לשמאל? המונים מתעדכנים כשמשנים סטטוס?</div>
+</div>
+
+<div class="card ex" id="e3" style="--c:var(--p4)">
+  <div class="h"><span class="n">3</span><h3>שתי הודעות, כמה שינויים בכל אחת</h3><span class="meta">12 דק׳ · base44.com</span></div>
+  <p class="goal">לשפר את האפליקציה בלי לבזבז את המכסה.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>רשמו 3-4 שינויים שאתם רוצים, ואחדו אותם להודעה אחת.</li><li>שינוי של טקסט או צבע: נסו קודם בעורך הוויזואלי.</li><li>בדקו כל שינוי. מה שלא עבד הולך להודעה השנייה.</li></ol>
+  <div class="lab">פרומפט</div>
+  <div class="pr"><button>העתקה</button><span>שלושה שינויים: 1. הוסף מסך ״לוח בקרה״ עם גרף עמודות של ממצאים לפי חומרה, וגרף של ממצאים פתוחים לפי יחידה. 2. סמן באדום ממצא שתאריך היעד שלו עבר. 3. הוסף כפתור לייצוא הטבלה ל-CSV.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> כמה הודעות נשארו לכם? השינוי הבא שווה הודעה, או שאפשר לעשות אותו ידנית?</div>
+</div>
+
+<div class="card ex" id="e4" style="--c:var(--p4)">
+  <div class="h"><span class="n">4</span><h3>נתונים מהתרגול, וקישור לשכן</h3><span class="meta">10 דק׳ · Publish</span></div>
+  <p class="goal">להכניס נתונים, לפרסם, ולתת למישהו אחר להשתמש באפליקציה.</p>
+  <div class="lab">שש החריגות מקובץ התרגול (מפגש 2)</div>
+  <div class="pr"><button>העתקה</button><span style="white-space:pre-line">הנחה 25% בלי אישור | מכירות ירושלים | גבוהה | שירה ב.
+הנחה 15% בלי אישור | מכירות ירושלים | גבוהה | שירה ב.
+מחיר 3,900 ₪ במקום 4,500 ₪ | מכירות מרכז | גבוהה | רונית ל.
+עסקה רשומה פעמיים | מכירות צפון | בינונית | דניאל כ.
+מכירה מחוץ לאזור | מכירות דרום | נמוכה | דניאל כ.
+עסקה בלי איש מכירות | מכירות מרכז | בינונית | רכזת</span></div>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>הכניסו את שש החריגות במסך הנתונים של Base44 (ידנית, בלי הודעה). או בהודעה אחת עם הפרומפט למטה.</li><li>לחצו Publish, והעתיקו את הקישור.</li><li>החליפו קישור עם השכן: כל אחד מוסיף ממצא ומשנה סטטוס אצל השני.</li></ol>
+  <div class="pr"><button>העתקה</button><span>הוסף לאפליקציה את 6 הממצאים מהטבלה הבאה כנתוני דוגמה, עם סטטוס ״פתוח״: [הדביקו את הטבלה]</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> השכן הצליח להיכנס? הוא ראה את כל הממצאים שלכם? (שמרו את התשובה לתרגיל 6.)</div>
+</div>
+
+<div class="card ex" id="e5" style="--c:var(--p4)">
+  <div class="h"><span class="n">5</span><h3>אפליקציה שלכם</h3><span class="meta">25 דק׳</span></div>
+  <p class="goal">לבנות כלי לעבודה שלכם, מתכנון ועד קישור.</p>
+  <div class="lab">שלבים</div>
+  <ol class="steps"><li>בחרו רעיון מהרשימה, או משהו מהעבודה שלכם. נתונים בדויים בלבד.</li><li>תכננו ב-Copilot (תרגיל 1), ובנו בהודעה אחת.</li><li>נגמרו ההודעות? עבדו עם השכן על אפליקציה אחת, או שמרו את הפרומפט למחר.</li></ol>
+  <div class="agent"><b>מעקב המלצות</b><small>המלצות מדוחות קודמים, אחראי, תאריך, סטטוס יישום</small><div class="pr"><button>העתקה</button><span>בנה אפליקציה בעברית למעקב יישום המלצות ביקורת: המלצה, דוח מקור, יחידה, אחראי, תאריך יעד, סטטוס (לא החל, בתהליך, יושם). מסך ראשי עם אחוז יישום לפי יחידה.</span></div></div>
+  <div class="agent"><b>צ׳קליסט ביקורת</b><small>רשימת בדיקות לכל ביקורת, עם סימון וראיה</small><div class="pr"><button>העתקה</button><span>בנה אפליקציה בעברית לצ׳קליסט ביקורת: לכל ביקורת רשימת בדיקות, ולכל בדיקה: תקין, לא תקין, לא רלוונטי, והערה. סיכום באחוזים בראש המסך.</span></div></div>
+  <div class="agent"><b>בקשת מסמכים</b><small>טופס ליחידה המבוקרת, ומעקב מה הגיע</small><div class="pr"><button>העתקה</button><span>בנה אפליקציה בעברית לבקשת מסמכים מיחידה מבוקרת: רשימת מסמכים, תאריך בקשה, תאריך קבלה, סטטוס, והערות. סמן באדום מסמך שלא הגיע אחרי 7 ימים.</span></div></div>
+  <div class="agent"><b>מחשבון מדגם</b><small>כמה פריטים לבדוק, לפי גודל אוכלוסייה וסיכון</small><div class="pr"><button>העתקה</button><span>בנה מחשבון בעברית לגודל מדגם בביקורת: מזינים גודל אוכלוסייה ורמת סיכון (נמוכה, בינונית, גבוהה), ומקבלים מספר פריטים מומלץ והסבר קצר. שמור היסטוריה של חישובים.</span></div></div>
+  <div class="agent"><b>לוח משימות צוות</b><small>מי עושה מה בכל ביקורת</small><div class="pr"><button>העתקה</button><span>בנה אפליקציה בעברית לניהול משימות צוות ביקורת: משימה, ביקורת, אחראי, תאריך יעד, סטטוס. תצוגת לוח עם עמודה לכל סטטוס, וגרירה בין עמודות.</span></div></div>
+  <div class="agent"><b>שאלון בקרה עצמית</b><small>יחידות ממלאות, אתם רואים תמונת מצב</small><div class="pr"><button>העתקה</button><span>בנה אפליקציה בעברית לשאלון בקרה עצמית: 10 שאלות כן/לא עם הערה, יחידה ממלאת, ומסך מנהל עם ציון לכל יחידה וגרף השוואה.</span></div></div>
+  <div class="chk"><b>בדיקה עצמית:</b> האפליקציה עושה דבר אחד טוב? עדיף כלי קטן שעובד מכלי גדול שחצי עובד.</div>
+</div>
+
+<h2>חלק 2 · עין של מבקר</h2>
+
+<div class="card ex" id="e6" style="--c:var(--p1)">
+  <div class="h"><span class="n">6</span><h3>בקרו את האפליקציה של השכן</h3><span class="meta">15 דק׳</span></div>
+  <p class="goal">להפעיל את עין המבקר על כלי שנבנה ב-AI, ולנסח ממצא אחד.</p>
+  <div class="lab">8 שאלות של מבקר</div>
+  <ol class="steps">
+    <li><b>הרשאות:</b> מי יכול לראות ולערוך? כל מי שיש לו קישור רואה הכול?</li>
+    <li><b>נתונים:</b> איזה מידע עלה לשם? נתונים אמיתיים או מזהים?</li>
+    <li><b>בעלות:</b> מי אחראי על הכלי? מה קורה כשהעובד שבנה אותו עוזב?</li>
+    <li><b>תיעוד:</b> יש היסטוריה של שינויים? אפשר לדעת מי שינה סטטוס?</li>
+    <li><b>נכונות:</b> החישובים נכונים? בדקו מספר אחד מול המקור.</li>
+    <li><b>תלות:</b> מה אם המכסה נגמרת או השירות נסגר? אפשר לייצא את הנתונים?</li>
+    <li><b>סוכנים:</b> מה מותר לסוכן לעשות לבד, ומה דורש אישור אדם?</li>
+    <li><b>הזרקה:</b> מה אם סוכן קורא אתר או מסמך עם הוראה נסתרת?</li>
+  </ol>
+  <div class="lab">פרומפט · ב-Copilot, או בסוכן ״מנסח ממצאים״ ממפגש 1</div>
+  <div class="pr"><button>העתקה</button><span>בדקתי אפליקציה שעובד בנה ב-Base44 למעקב ממצאים. מצאתי ש[מה מצאתם]. נסח את זה כממצא ביקורת: ממצא, קריטריון, סיבה, השפעה, המלצה. שפה עניינית, בלי שמות.</span></div>
+  <div class="chk"><b>בדיקה עצמית:</b> הממצא שלכם מבוסס על משהו שראיתם באפליקציה עצמה, ולא על הנחה?</div>
+</div>
+
+<footer>ערכת משתתף · מפגש 3 · סדנת Copilot לחטיבת הביקורת · קווין גל ליאקס · כל הנתונים בדויים</footer>
+</div>
+<script>
+document.querySelectorAll('.pr button').forEach(b=>b.onclick=()=>{const t=b.nextElementSibling.innerText;const ok=()=>{b.textContent='הועתק ✓';setTimeout(()=>b.textContent='העתקה',1500)};
+  try{navigator.clipboard.writeText(t).then(ok,()=>{const r=document.createRange();r.selectNodeContents(b.nextElementSibling);getSelection().removeAllRanges();getSelection().addRange(r);b.textContent='סומן: Ctrl+C'})}catch(e){}});
+</script>
+</body>
+</html>
